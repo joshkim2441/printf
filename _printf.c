@@ -3,7 +3,7 @@
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - the rintf function.
+ * _printf - the printf function.
  * @format: the format to print
  * Return: the printed chars
  */
@@ -53,9 +53,9 @@ int _printf(const char *format, ...)
 }
 
 /**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_ind: Index at which to add next char, represents the length.
+ * print_buffer - it prints the contents of the buffer if exists.
+ * @buffer: an array of chars
+ * @buff_ind: an index at which to add next char, represents length
  */
 void print_buffer(char buffer[], int *buff_ind)
 {

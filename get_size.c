@@ -5,22 +5,22 @@
  * @format: formatted string in which arguments are printed.
  * @i: the arguments list to be printed.
  *
- * Return: Precision.
+ * Return: precision.
  */
 int get_size(const char *format, int *i)
 {
 	int curr_i = *i + 1;
-	int size = 0;
+	int size_g = 0;
 
 	if (format[curr_i] == 'l')
-		size = S_LONG;
+		size_g = S_LONG;
 	else if (format[curr_i] == 'h')
-		size = S_SHORT;
+		size_g = S_SHORT;
 
-	if (size == 0)
+	if (size_g == 0)
 		*i = curr_i - 1;
 	else
 		*i = curr_i;
 
-	return (size);
+	return (size_g);
 }
