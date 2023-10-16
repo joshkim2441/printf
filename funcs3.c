@@ -12,53 +12,46 @@ int _printf(const char *format, ...)
 	va_list args;
 	va_start(args, format);
 
-	for (const char *p = format; *p != '\0'; p++)
+	for (const char *traverse = format; *traverse != '\0'; traverse++)
 	{
-		if (*p != '%')
+		while (*traverse != '%'; && *traverse != '\0')
 		{
-			_putchar(*p);
+			putchar(*traverse);
+			traverse++;
 			count++;
-			continue;
 		}
-
-		p++;
-
-		switch (*p)
+		if (*traverse == '\0')
+			break;
+		switch (*traverse)
 		{
 			case 'c':
-			{
-				char c = va_arg(args, int);
-				_putchar(c);
-				count++;
-				break;
-			}
-			case 's':
-			{
-				char *s = va_arg(args, char *);
-				for (char *sp = s; *sp != '\0'; sp++)
 				{
-					_putchar(*sp);
+					int c = va_arg(args, int);
+					putchar(c);
 					count++;
+					break;
 				}
-				break;
-			}
+			case 's':
+				{
+					char *s = va_arg(args, char*);
+					for (; *s; s++)
+					{
+						putchar(*s);
+						count++;
+					}
+					break;
+				}
 			case '%':
-			{
-				_putchar('%');
-				count++;
-				break;
-			}
-			default:
-			{
-				_putchar('%');
-				_putchar(*p);
-				count += 2;
-				break;
-			}
+				{
+					putchar('%');
+					count++;
+					break;
+				}
 		}
-	}
-	va_end(args);
 
+	}
+
+	va_end(args);
 	return (count);
 }
 
@@ -78,7 +71,7 @@ int _printf(const char *format, ...)
 	{
 		if (*p != '%')
 		{
-			_putchar(*p);
+			putchar(*p);
 			count++;
 			continue;
 		}
@@ -97,7 +90,7 @@ int _printf(const char *format, ...)
 			case 'c':
 				{
 					char c = va_arg(args, int);
-					_putchar(c);
+					putchar(c);
 					count++;
 					break;
 				}
@@ -106,19 +99,19 @@ int _printf(const char *format, ...)
 					char *s = va_arg(args, char *);
 					for (char *sp = s; *sp != '\0' && (precision == -1 || sp - s < precision); sp++)
 					{
-						_putchar(*sp);
+						putchar(*sp);
 						count++;
 					}
 					break;
 				}
 			default:
 				{
-					_putchar('%');
+					putchar('%');
 					if (precision != -1)
 					{
 						_putchar('0' + precision);
 					}
-					_putchar(*p);
+					putchar(*p);
 					count += 2 + (precision != -1 ? 1 : 0);
 					break;
 				}
