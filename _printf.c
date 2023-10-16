@@ -1,15 +1,15 @@
-#include "main.h"
+#nclude "main.h"
 
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - Printf function
+ * _printf - The Printf function
  * @format: format.
- * Return: Printed chars.
+ * Return: Printed characters.
  */
 int _printf(const char *format, ...)
 {
-	int i, printed = 0, printed_chars = 0;
+	int x, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
@@ -19,14 +19,14 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	for (x = 0; format && format[x] != '\0'; x++)
 	{
-		if (format[i] != '%')
+		if (format[x] != '%')
 		{
-			buffer[buff_ind++] = format[i];
+			buffer[buff_ind++] = format[x];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
-			/* write(1, &format[i], 1);*/
+			/* write(1, &format[x], 1);*/
 			printed_chars++;
 		}
 		else
