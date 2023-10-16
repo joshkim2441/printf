@@ -1,11 +1,11 @@
-#nclude "main.h"
+#include "main.h"
 
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - The Printf function
+ * _printf - Printf function
  * @format: format.
- * Return: Printed characters.
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 			buffer[buff_ind++] = format[x];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
-			/* write(1, &format[x], 1);*/
+			/* write(1, &format[i], 1);*/
 			printed_chars++;
 		}
 		else
