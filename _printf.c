@@ -1,11 +1,40 @@
 #include "main.h"
 
+/**
+ * _printf - a function that produces output according to a format
+ * @format: format according to the argument that will be printed
+ * Return: number of characters printed
+ */
+
+int _printf(const char *format, ...)
+{
+	int count = 0;
+	va_list args;
+
+	if (format == NULL)
+		return (-1);
+
+	va_start(args, format);
+
+	while (*format)
+	{
+		if (*format != '%')
+		{
+			write(1, format, 1);
+		}
+
+		format++;
+	}
+
+	return (count);
+}
+
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - Printf function
- * @format: format.
- * Return: Printed chars.
+ * _printf - the printf function.
+ * @format: the format
+ * Return: the printed chars
  */
 int _printf(const char *format, ...)
 {
@@ -53,9 +82,9 @@ int _printf(const char *format, ...)
 }
 
 /**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of characters
- * @buff_ind: Index at which to add next characters, represents the length.
+ * print_buffer - it prints contents of buffer if it exist
+ * @buffer: an array of characters.
+ * @buff_ind: the index at which to add next characters, represents length
  */
 void print_buffer(char buffer[], int *buff_ind)
 {
