@@ -112,19 +112,19 @@ int write_num(int ind, char buffer[],
 		for (j = 1; j < width - length + 1; j++)
 			buffer[j] = padd;
 		buffer[j] = '\0';
-		if (flags & F_MINUS && padd == ' ')/* Asign extra char to the left of the buffer */
+		if (flags & F_MINUS && padd == ' ')
 		{
 			if (extra_c)
 				buffer[--ind] = extra_c;
 			return (write(1, &buffer[ind], length) + write(1, &buffer[1], j - 1));
-		}
-		else if (!(flags & F_MINUS) && padd == ' ')/* extra char to the left of the buffer */
+		} /* extra char to the left of the buffer */
+		else if (!(flags & F_MINUS) && padd == ' ')
 		{
 			if (extra_c)
 				buffer[--ind] = extra_c;
 			return (write(1, &buffer[1], j - 1) + write(1, &buffer[ind], length));
-		}
-		else if (!(flags & F_MINUS) && padd == '0')/* extra char to the left of the padding */
+		} /* extra char to the left of the padding */
+		else if (!(flags & F_MINUS) && padd == '0')
 		{
 			if (extra_c)
 				buffer[--padd_start] = extra_c;
@@ -181,8 +181,8 @@ int write_unsgnd(int is_negative, int ind,
 			buffer[j] = padd;
 
 		buffer[j] = '\0';
-
-		if (flags & F_MINUS) /* Asign an extra char to the left of the buffer [buffer>padd]*/
+		/* Asign an extra char to the left of the buffer [buffer>padd]*/
+		if (flags & F_MINUS)
 		{
 			return (write(1, &buffer[ind], length) + write(1, &buffer[0], j));
 		}
@@ -218,23 +218,24 @@ int write_pointer(char buffer[], int ind, int length,
 		for (j = 3; j < width - length + 3; j++)
 			buffer[j] = padd;
 		buffer[j] = '\0';
-		if (flags & F_MINUS && padd == ' ')/* Asigns an extra char to the left of buffer */
+		/* Asigns an extra char to the left of buffer */
+		if (flags & F_MINUS && padd == ' ')
 		{
 			buffer[--ind] = 'x';
 			buffer[--ind] = '0';
 			if (extra_c)
 				buffer[--ind] = extra_c;
 			return (write(1, &buffer[ind], length) + write(1, &buffer[3], j - 3));
-		}
-		else if (!(flags & F_MINUS) && padd == ' ')/* extra char to the left of buffer */
+		} /* extra char to the left of buffer */
+		else if (!(flags & F_MINUS) && padd == ' ')
 		{
 			buffer[--ind] = 'x';
 			buffer[--ind] = '0';
 			if (extra_c)
 				buffer[--ind] = extra_c;
 			return (write(1, &buffer[3], j - 3) + write(1, &buffer[ind], length));
-		}
-		else if (!(flags & F_MINUS) && padd == '0')/* extra char to the left of padd */
+		} /* extra char to the left of padd */
+		else if (!(flags & F_MINUS) && padd == '0')
 		{
 			if (extra_c)
 				buffer[--padd_start] = extra_c;
