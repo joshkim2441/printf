@@ -66,7 +66,7 @@ int print_pointer(va_list types, char buffer[],
 int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int x = 0, offset = 0;
+	int j = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
 	UNUSED(flags);
@@ -77,27 +77,27 @@ int print_non_printable(va_list types, char buffer[],
 	if (str == NULL)
 		return (write(1, "(null)", 6));
 
-	while (str[x] != '\0')
+	while (str[j] != '\0')
 	{
-		if (is_printable(str[x]))
-			buffer[x + offset] = str[x];
+		if (is_printable(str[j]))
+			buffer[j + offset] = str[j];
 		else
-			offset += append_hexa_code(str[x], buffer, x + offset);
+			offset += append_hexa_code(str[j], buffer, j + offset);
 
-		x++;
+		j++;
 	}
 
-	buffer[x + offset] = '\0';
+	buffer[j + offset] = '\0';
 
-	return (write(1, buffer, x + offset));
+	return (write(1, buffer, j + offset));
 }
 
 /************************* TO PRINT REVERSE *************************/
 /**
- * print_reverse - it Prints reverse string.
+ * print_reverse - it prints reverse string.
  * @types: lists arguments
  * @buffer: a buffer array to handle printing
- * @flags:  it alculates the active flags
+ * @flags:  it calculates the active flags
  * @width: gets the width
  * @precision: the precision specification
  * @size: the size specifier
@@ -108,7 +108,7 @@ int print_reverse(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	char *str;
-	int x, count = 0;
+	int j, count = 0;
 
 	UNUSED(buffer);
 	UNUSED(flags);
@@ -123,12 +123,12 @@ int print_reverse(va_list types, char buffer[],
 
 		str = ")Null(";
 	}
-	for (x = 0; str[x]; x++)
+	for (j = 0; str[j]; j++)
 		;
 
-	for (x = x - 1; x >= 0; x--)
+	for (j = j - 1; j >= 0; j--)
 	{
-		char z = str[x];
+		char z = str[j];
 
 		write(1, &z, 1);
 		count++;
@@ -185,4 +185,14 @@ int print_rot13string(va_list types, char buffer[],
 		}
 	}
 	return (count);
+}
+
+void db_printf(const char *format, ...)
+{
+        va_list args;
+        va_start(args, format);
+
+        vprintf(format, args);
+
+        va_end(args);
 }

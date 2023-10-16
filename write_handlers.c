@@ -196,7 +196,7 @@ int write_unsgnd(int is_negative, int ind,
 }
 
 /**
- * write_pointer - it write a memory address
+ * write_pointer - it writes the memory address
  * @buffer: an arrays of chars
  * @ind: the index at which the number starts in the buffer
  * @length: the length of number
